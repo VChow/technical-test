@@ -26,9 +26,6 @@ public class MessageProcessingApplication {
     /** Track the adjustments made to each product */
     private Map<String, StringBuilder> productAdjustmentHistory;
 
-    /** The {@link MessageProducer} to add message to the messageQueue */
-    private MessageProducer messageProducer;
-
     /** The {@link MessageProcessor} to process Message Notifications */
     private MessageProcessor messageProcessor;
 
@@ -39,21 +36,26 @@ public class MessageProcessingApplication {
     private int messageProcessedCounter;
 
     /**
-     * Default no argument constructor
+     * Default no argument constructor.
      */
     public MessageProcessingApplication(){
+
+    }
+
+    /**
+     * Constructor
+     */
+    public MessageProcessingApplication(MessageProcessor messageProcessor, SalesReporter salesReporter){
         messageQueue = new LinkedList<MessageNotification>();
         salesRecord = new HashMap<String, List<Sale>>();
         productAdjustmentHistory = new HashMap<String, StringBuilder>();
         isAcceptingMessages = true;
 
-        messageProducer = new MessageProducer();
-        messageProcessor = new MessageProcessor();
-        salesReporter = new SalesReporter();
+        this.messageProcessor = messageProcessor;
+        this.salesReporter = salesReporter;
 
         messageProcessedCounter = 0;
 
-        start();
     }
 
     /**
@@ -92,7 +94,15 @@ public class MessageProcessingApplication {
             System.out.println(salesReporter.getProductAdjustmentReport(productAdjustmentHistory));
         }
 
-       resumeOrExit();
+    }
+
+    /**
+     * Gets the productAdjustmentHistory
+     *
+     * @return productAdjustmentHistory
+     */
+    public Map<String, StringBuilder> getProductAdjustmentHistory(){
+        return productAdjustmentHistory;
     }
 
     /**
@@ -160,12 +170,5 @@ public class MessageProcessingApplication {
         }
     }
 
-    /**
-     * Prompt user to continue or exit the application.
-     */
-    private void resumeOrExit(){
-        System.out.println("Press 'Enter' to resume or Ctrl+C to exit: ");
-        System.console().readLine();
-        start();
-    }
+
 }

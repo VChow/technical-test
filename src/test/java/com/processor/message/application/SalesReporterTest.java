@@ -21,7 +21,7 @@ public class SalesReporterTest {
     private MessageProcessingApplication mockMessageProcessingApplication;
 
     @Before
-    public void before(){
+    public void setup(){
         mockMessageProcessingApplication = Mockito.mock(MessageProcessingApplication.class);
 
     }
@@ -46,7 +46,7 @@ public class SalesReporterTest {
         mockMap.put("Banana", bananaSales);
         mockMap.put("Orange", orangeSales);
 
-        mockMessageProcessingApplication.salesRecord = mockMap;
+        MessageProcessingApplication.salesRecord = mockMap;
 
         SalesReporter reporter = new SalesReporter();
 

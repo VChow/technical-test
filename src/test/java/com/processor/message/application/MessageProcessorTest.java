@@ -20,7 +20,7 @@ public class MessageProcessorTest {
     private static List<Sale> sales = new ArrayList<Sale>();
 
     @Before
-    public void before(){
+    public void setup(){
         sales.clear();
     }
 

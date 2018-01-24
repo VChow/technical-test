@@ -8,6 +8,20 @@ package com.processor.message.application;
 public class Main {
 
     public static void main(String[] args) {
-        MessageProcessingApplication application = new MessageProcessingApplication();
+
+        MessageProducer messageProducer = new MessageProducer();
+        MessageProcessor messageProcessor = new MessageProcessor();
+        SalesReporter salesReporter = new SalesReporter();
+
+        MessageProcessingApplication application = new MessageProcessingApplication(messageProcessor, salesReporter);
+        messageProducer.generateAndSendMessageNotifications();
+        application.start();
+
+        while(true){
+            System.out.println("Press 'Enter' to resume or Ctrl+C to exit: ");
+            System.console().readLine();
+            application.start();
+        }
     }
+
 }

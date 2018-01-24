@@ -34,6 +34,9 @@ public class MessageProducer {
      */
     public MessageProducer(){
 
+    }
+
+    public void generateAndSendMessageNotifications(){
         randomNumberGenerator = new Random();
 
         if(MessageProcessingApplication.isAcceptingMessages){
@@ -61,7 +64,7 @@ public class MessageProducer {
     /**
      * Generates a TypeOne {@link MessageNotification} with randomized data.
      */
-    public void generateAndSendMessageNotificationTypeOne(){
+    private void generateAndSendMessageNotificationTypeOne(){
         int productTypeIndex = randomNumberGenerator.nextInt(MAX_VALUE);
         int priceIndex = randomNumberGenerator.nextInt(MAX_VALUE);
 
@@ -72,7 +75,7 @@ public class MessageProducer {
     /**
      * Generates a TypeTwo {@link MessageNotification} with randomized data.
      */
-    public void generateAndSendMessageNotificationTypeTwo(){
+    private void generateAndSendMessageNotificationTypeTwo(){
         int productTypeIndex = randomNumberGenerator.nextInt(MAX_VALUE);
         int priceIndex = randomNumberGenerator.nextInt(MAX_VALUE);
         int quantityIndex = randomNumberGenerator.nextInt(MAX_VALUE);
@@ -84,7 +87,7 @@ public class MessageProducer {
     /**
      * Generates a TypeThree {@link MessageNotification} with randomized data.
      */
-    public void generateAndSendMessageNotificationTypeThree(){
+    private void generateAndSendMessageNotificationTypeThree(){
         int productTypeIndex = randomNumberGenerator.nextInt(MAX_VALUE);
         int priceIndex = randomNumberGenerator.nextInt(MAX_VALUE);
         int quantityIndex = randomNumberGenerator.nextInt(MAX_VALUE);
